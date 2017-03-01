@@ -24,7 +24,7 @@ int main(int argc, char **argv) {
     int klucz = 3;
 	cout << "Podaj tekst do zaszyfrowania" << endl;
 	// cin >> tekst;
-    cin.getline(tekst, 100);a
+    cin.getline(tekst, 100);
     cout << "Podaj klucz";
     cin >> klucz;
     szyfruj(tekst, klucz);
