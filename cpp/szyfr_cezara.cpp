@@ -2,6 +2,14 @@
 
 using namespace std;
 
+void lower(char tekst[]) {
+ // funkcja zamienia duze litery na małe
+    //użyj petli do odczytywania kolejnych znaków
+    // sprawdz kod ascii znaku
+    //jezeli kod odpowiada duzej literze,podmien znak;
+
+}
+
 void szyfruj(char tekst[], int klucz) {
     int i = 0; // indeks
     klucz = klucz % 26;
