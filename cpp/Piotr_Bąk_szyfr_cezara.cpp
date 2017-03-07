@@ -2,11 +2,9 @@
 
 using namespace std;
 
-void lower(char tekst[]) {
- // funkcja zamienia duze litery na małe
-    //użyj petli do odczytywania kolejnych znaków
-    // sprawdz kod ascii znaku
-    //jezeli kod odpowiada duzej literze,podmien znak;
+char lower15(char d) {
+{
+    return char((int)d+32);
 
 }
 
@@ -14,6 +12,12 @@ void szyfruj(char tekst[], int klucz) {
     int i = 0; // indeks
     klucz = klucz % 26;
     while (tekst[i] != '\0') {
+
+        if (tekst[i] == ' ')
+            continue;
+
+        if ((int)tekst[i] >=65 && (int)tekst[i] <=90)
+            tekst[i] = lower15 (tekst[i]);
         if ((int)tekst[i] + klucz > 122)
             tekst[i] = (char)((int)tekst[i] + klucz - 26);
         else
