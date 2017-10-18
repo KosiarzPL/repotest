@@ -21,9 +21,9 @@ def main(args):
     pracownicy = dane_z_pliku('pracownicy.txt')
     pracownicy = wyczysc_dane(pracownicy, 5)
     
-    dzial = dane_z_pliku('dział.txt')
+    dział = dane_z_pliku('dział.txt')
     
-    cur.executemany('INSERT INTO dzial VALUES (?, ?, ?)',dzial)
+    cur.executemany('INSERT INTO dział VALUES (?, ?, ?)',dzial)
     cur.executemany('INSERT INTO premia VALUES (?, ?)',premia)
     
     cur.executemany('INSERT INTO pracownicy (id, nazwisko, imie, stanowisko,data_zatr, placa, id_dzial) VALUES (?, ?, ?, ?, ?, ?, ?)',pracownicy)
