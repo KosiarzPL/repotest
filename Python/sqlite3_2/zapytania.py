@@ -10,7 +10,7 @@ def kw_a(cur):
     cur.execute('''
         SELECT Imie, Nazwisko, tbKlasy.klasa
         FROM tbUczniowie, tbKlasy
-        WHERE tbUczniowie.klasaID=tbKlasy.IDklasy
+        WHERE tbUczniowie.klasaID = tbKlasy.IDklasy
         AND tbKlasy.Klasa = '1A'
         ''')
     wyniki = cur.fetchall() #pobierz wszystkie wiersze od razu
@@ -21,11 +21,12 @@ def kw_a(cur):
 def kw_b(cur):
     cur.execute('''
         SELECT MAX(EgzHum)
-        FROM tbUczniowie
+         FROM tbUczniowie
         ''')
     wyniki = cur.fetchall() #pobierz wszystkie wiersze od razu
     for row in wyniki:
         print(tuple(row))
+
 
 
 def kw_c(cur):
@@ -54,7 +55,6 @@ def kw_d(cur):
         print(tuple(row))
         
 
- 
 def kw_e(cur):
     cur.execute("""
         SELECT AVG(Ocena)
