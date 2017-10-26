@@ -8,10 +8,10 @@ import sqlite3
 
 def kw_a(cur):
     cur.execute('''
-        SELECT Imie, Nazwisko, tbKlasy.klasa
-        FROM tbUczniowie, tbKlasy
-        WHERE tbUczniowie.klasaID = tbKlasy.IDklasy
-        AND tbKlasy.Klasa = '1A'
+        SELECT imie, nazwisko, tbklasy.klasa
+        FROM tbuczniowie, tbklasy
+        WHERE tbuczniowie.klasaID = tbklasy.IDklasy
+         AND klasa like '1A'
         ''')
     wyniki = cur.fetchall() #pobierz wszystkie wiersze od razu
     for row in wyniki:
@@ -21,7 +21,7 @@ def kw_a(cur):
 def kw_b(cur):
     cur.execute('''
         SELECT MAX(EgzHum)
-         FROM tbUczniowie
+         FROM tbuczniowie
         ''')
     wyniki = cur.fetchall() #pobierz wszystkie wiersze od razu
     for row in wyniki:
@@ -32,9 +32,9 @@ def kw_b(cur):
 def kw_c(cur):
     cur.execute("""
         SELECT AVG(EgzMat)
-        FROM tbUczniowie, tbKlasy
-        WHERE tbUczniowie.klasaID=tbKlasy.IDklasy
-        AND tbKlasy.Klasa = '1A'
+        FROM tbuczniowie, tbklasy
+        WHERE tbuczniowie.klasaID=tbklasy.IDklasy
+        AND klasa LIKE '1A'
         """)
     wyniki = cur.fetchall() #pobierz wszystkie wiersze od razu
     for row in wyniki:
@@ -43,11 +43,11 @@ def kw_c(cur):
 
 def kw_d(cur):
     cur.execute("""
-        SELECT Imie, Nazwisko, tbOceny.Ocena
-        FROM tbUczniowie, tbOceny
-        WHERE tbOceny.UczenID = tbUczniowie.IDucznia
-        AND Imie = "Dorota" 
-        AND Nazwisko = "Nowak"
+        SELECT imie, nazwisko, tboceny.ocena
+        FROM tbuczniowie, tboceny
+        WHERE tboceny.uczenID = tbuczniowie.IDucznia
+        AND nazwisko LIKE 'Nowak'
+        AND imie LIKE 'Dorota' 
         """)
         
     wyniki = cur.fetchall() #pobierz wszystkie wiersze od razu
@@ -57,11 +57,11 @@ def kw_d(cur):
 
 def kw_e(cur):
     cur.execute("""
-        SELECT AVG(Ocena)
-        FROM tbOceny, tbPrzedmioty
+        SELECT AVG(ocena)
+        FROM tboceny, tbprzedmioty
         WHERE strftime('%m', datad) LIKE '10'
-        AND tbOceny.PrzedmiotID = tbPrzedmioty.IDPrzedmiotu
-        AND tbPrzedmioty.Przedmiot = 'fizyka'
+        AND tboceny.przedmiotID = tbprzedmioty.IDprzedmiotu
+        AND przedmiot LIKE 'fizyka'
        """)
     wyniki = cur.fetchall() #pobierz wszystkie wiersze od razu
     for row in wyniki:
@@ -73,7 +73,7 @@ def main(args):
     cur = con.cursor() #utworzenie kursora
     con.row_factory = sqlite3.Row
     
-    kw_b(cur)
+    kw_c(cur)
     
     return 0
 
