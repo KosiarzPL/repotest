@@ -57,11 +57,68 @@ def kw_d():
     query = Pracownik.select().join(Dzial)
     
     for obj in query:
-        print(obj.id_dzial.id, obj.id_dzial.nazwa, obj.imie, obj.nazwisko)
+        print(obj.id_dzial.id,
+             obj.id_dzial.nazwa,
+             obj.imie,
+             obj.nazwisko)
+
+
+def kw_e():
+    # query = Pracownik.select()
+    
+    query = Pracownik.select().join(Premia)
+    
+    for obj in query:
+        print(obj.nazwisko,
+             obj.imie,
+             obj.placa * obj.stanowisko.premia)
+
+
+
+def kw_f():
+    # query = Pracownik.select()
+    
+    #query = (Pracownik
+    #        .select(fn.Avg(Pracownik.placa).alias('srednia'))
+    #       .where(Pracownik.imie.endswith('a'))
+    #      )
+    query = (Pracownik
+             .select(fn.Avg(Pracownik.placa).alias('srednia'))
+             .group_by(Pracownik.imie.endswith('a'))
+             )
+    
+    for obj in query:
+        print(obj.srednia)
+        
+
+def kw_g():
+    # query = Pracownik.select()
+    from datetime import datetime
+    query = (Pracownik
+             .select(Pracownik.imie,
+              Pracownik.nazwisko,
+              Pracownik.data_zatr.year.alias('rok'))
+             )
+    
+    for obj in query:
+        print(obj.imie,
+              obj.nazwisko,
+              datetime.now().year - obj.rok)
+             
+
+def kw_h():
+    query = (Pracownik
+          .select(fn.Count(Pracownik.placa).alias('liczba'))
+          .where(Pracownik.imie.endswith('a'))
+         )
+        
+        
+    for obj in query:
+            print(obj.liczba)
 
 
 def main(args):
-    kw_c()
+    kw_h()
     return 0
 
 if __name__ == '__main__':
